@@ -1,0 +1,123 @@
+// prisma/schema.prisma
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  PRODUTOR
+  ADMIN
+  BENEFICIARIO
+}
+
+enum DonationStatus {
+  PENDENTE
+  CONFIRMADA
+  ENTREGUE
+  CANCELADA
+}
+
+enum FoodCategory {
+  FRUTAS
+  LEGUMES
+  VERDURAS
+  GRAOS
+  LATICINIOS
+  OUTROS
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String
+  email         String    @unique
+  password      String
+  role          Role      @default(BENEFICIARIO)
+  phone         String?
+  cpf           String?   @unique
+  institution   String?   // Para beneficiários: nome da instituição
+  registration  String?   // Matrícula (estudante) ou siape (servidor)
+  farmName      String?   // Para produtores: nome da propriedade
+  farmAddress   String?   // Endereço da propriedade
+  active        Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  donations     Donation[]   @relation("DonorDonations")
+  receipts      Donation[]   @relation("RecipientDonations")
+  foods         Food[]
+  receiptsIssued Receipt[]
+
+  @@map("users")
+}
+
+model Food {
+  id           String       @id @default(cuid())
+  name         String
+  description  String?      @db.Text
+  category     FoodCategory
+  unit         String       // kg, unidade, caixa, etc.
+  quantity     Float
+  expiresAt    DateTime?
+  imageUrl     String?
+  active       Boolean      @default(true)
+  producerId   String
+  producer     User         @relation(fields: [producerId], references: [id])
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  donationItems DonationItem[]
+
+  @@map("foods")
+}
+
+model Donation {
+  id            String         @id @default(cuid())
+  code          String         @unique @default(cuid())
+  status        DonationStatus @default(PENDENTE)
+  notes         String?        @db.Text
+  scheduledDate DateTime?
+  deliveredAt   DateTime?
+  donorId       String
+  donor         User           @relation("DonorDonations", fields: [donorId], references: [id])
+  recipientId   String
+  recipient     User           @relation("RecipientDonations", fields: [recipientId], references: [id])
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  items         DonationItem[]
+  receipt       Receipt?
+
+  @@map("donations")
+}
+
+model DonationItem {
+  id         String   @id @default(cuid())
+  quantity   Float
+  unit       String
+  foodId     String
+  food       Food     @relation(fields: [foodId], references: [id])
+  donationId String
+  donation   Donation @relation(fields: [donationId], references: [id], onDelete: Cascade)
+
+  @@map("donation_items")
+}
+
+model Receipt {
+  id          String   @id @default(cuid())
+  code        String   @unique
+  donationId  String   @unique
+  donation    Donation @relation(fields: [donationId], references: [id])
+  issuedById  String
+  issuedBy    User     @relation(fields: [issuedById], references: [id])
+  issuedAt    DateTime @default(now())
+  pdfUrl      String?
+  notes       String?  @db.Text
+
+  @@map("receipts")
+}
