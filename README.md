@@ -1,3 +1,10 @@
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 # 🌱 Conecta Safra
 
 > Plataforma que conecta produtores agrícolas às comunidades acadêmicas e instituições públicas de ensino, facilitando a doação de alimentos produzidos localmente.
@@ -24,19 +31,6 @@ O **Conecta Safra** é uma ponte digital entre a produção agrícola local e as
 
 ---
 
-## 🛠️ Stack tecnológica <a name="stack"></a>
-
-| Camada        | Tecnologia         |
-|---------------|--------------------|
-| Frontend      | Next.js 14 + React |
-| Linguagem     | TypeScript         |
-| Estilização   | Tailwind CSS       |
-| Banco de dados| MySQL              |
-| ORM           | Prisma             |
-| Autenticação  | NextAuth.js        |
-| Deploy        | Vercel             |
-
----
 
 ## 📁 Estrutura de pastas <a name="estrutura"></a>
 
@@ -84,7 +78,7 @@ conecta-safra/
 
 ---
 
-## 🚀 Instalação e execução <a name="instalacao"></a>
+##  Instalação e execução <a name="instalacao"></a>
 
 ### Pré-requisitos
 
@@ -123,17 +117,6 @@ Acesse: [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## 👥 Usuários e perfis <a name="perfis"></a>
-
-| Perfil         | Email (demo)                         | Senha  | Acesso                        |
-|----------------|--------------------------------------|--------|-------------------------------|
-| Admin          | admin@conectasafra.com.br            | 123456 | Painel completo               |
-| Produtor       | joao@fazendabonsventos.com.br        | 123456 | Gerencia alimentos e doações  |
-| Produtora      | maria@sitesaofrancisco.com.br        | 123456 | Gerencia alimentos e doações  |
-| Estudante      | ana.ferreira@ufpe.br                 | 123456 | Solicita doações              |
-| Servidor       | carlos.mendes@ifpe.edu.br            | 123456 | Solicita doações              |
-
----
 
 ## 🔄 Fluxo principal <a name="fluxo"></a>
 
@@ -148,51 +131,6 @@ Acesse: [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## 🌐 Rotas da API <a name="api"></a>
-
-### Autenticação
-| Método | Rota                     | Descrição              |
-|--------|--------------------------|------------------------|
-| POST   | `/api/auth/signin`       | Login                  |
-| GET    | `/api/auth/session`      | Sessão atual           |
-
-### Usuários
-| Método | Rota               | Acesso    | Descrição              |
-|--------|--------------------|-----------|------------------------|
-| POST   | `/api/users`       | Público   | Criar conta            |
-| GET    | `/api/users`       | Admin     | Listar usuários        |
-| GET    | `/api/users/[id]`  | Auth      | Buscar usuário         |
-| PATCH  | `/api/users/[id]`  | Auth      | Atualizar usuário      |
-| DELETE | `/api/users/[id]`  | Admin     | Desativar usuário      |
-
-### Alimentos
-| Método | Rota               | Acesso    | Descrição              |
-|--------|--------------------|-----------|------------------------|
-| GET    | `/api/foods`       | Auth      | Listar alimentos       |
-| POST   | `/api/foods`       | Produtor  | Cadastrar alimento     |
-| PATCH  | `/api/foods/[id]`  | Produtor  | Atualizar alimento     |
-| DELETE | `/api/foods/[id]`  | Produtor  | Remover alimento       |
-
-### Doações
-| Método | Rota                    | Acesso       | Descrição              |
-|--------|-------------------------|--------------|------------------------|
-| GET    | `/api/donations`        | Auth         | Listar doações         |
-| POST   | `/api/donations`        | Beneficiário | Criar doação           |
-| GET    | `/api/donations/[id]`   | Auth         | Buscar doação          |
-| PATCH  | `/api/donations/[id]`   | Admin/Prod   | Atualizar status       |
-
-### Comprovantes
-| Método | Rota               | Acesso    | Descrição              |
-|--------|--------------------|-----------|------------------------|
-| GET    | `/api/receipts`    | Auth      | Listar comprovantes    |
-| POST   | `/api/receipts`    | Admin     | Emitir comprovante     |
-
-### Estatísticas
-| Método | Rota                       | Acesso | Descrição          |
-|--------|----------------------------|--------|--------------------|
-| GET    | `/api/dashboard/stats`     | Auth   | Stats do dashboard |
-
----
 
 ## 🗄️ Banco de dados <a name="banco"></a>
 
@@ -229,20 +167,6 @@ vercel login
 # 3. Deploy
 vercel --prod
 ```
-
-Configure as variáveis de ambiente no painel da Vercel:
-- `DATABASE_URL` — URL do MySQL (use PlanetScale ou Railway para produção)
-- `NEXTAUTH_SECRET` — Gere com `openssl rand -base64 32`
-- `NEXTAUTH_URL` — URL do seu app em produção
-
-### Banco de dados em produção
-
-Para produção, recomenda-se usar:
-- **PlanetScale** — MySQL serverless, gratuito para começar
-- **Railway** — MySQL com plano gratuito
-- **AWS RDS** — Para escala maior
-
----
 
 ## 📄 Licença
 
