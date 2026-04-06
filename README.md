@@ -11,20 +11,6 @@
 
 ---
 
-## 📋 Índice
-
-- [Sobre o projeto](#sobre)
-- [Stack tecnológica](#stack)
-- [Estrutura de pastas](#estrutura)
-- [Instalação e execução](#instalacao)
-- [Usuários e perfis](#perfis)
-- [Fluxo principal](#fluxo)
-- [Rotas da API](#api)
-- [Banco de dados](#banco)
-- [Deploy](#deploy)
-
----
-
 ## 🌾 Sobre o projeto <a name="sobre"></a>
 
 O **Conecta Safra** é uma ponte digital entre a produção agrícola local e as comunidades acadêmicas de Pernambuco. A plataforma permite que produtores rurais disponibilizem alimentos excedentes para doação, que estudantes e servidores de instituições de ensino possam solicitá-los, e que a equipe administrativa gerencie e confirme todo o processo.
